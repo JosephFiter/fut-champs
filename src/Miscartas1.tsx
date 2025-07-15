@@ -72,7 +72,15 @@ function MisCartas() {
           };
         });
 
-        const cartasUsuario = cartasParsed.filter(carta => cartasIds.includes(carta.id));
+        const cartasUsuario = cartasIds.map(id => {
+          return cartasParsed.find(carta => carta.id === id) || {
+            id,
+            nombre: 'Desconocida',
+            tipo: '-',
+            global: 0,
+          };
+        });
+
         setCartasInfo(cartasUsuario);
       } catch (err) {
         console.error('Error cargando cartas CSV:', err);
@@ -99,11 +107,22 @@ function MisCartas() {
         <p>No tenés cartas cargadas.</p>
       ) : (
         <div className="MisCartas-cards">
-          {cartasInfo.map(carta => (
-            <div key={carta.id} className="MisCartas-card">
+          {cartasInfo.map((carta, idx) => (
+            <div
+              key={`${carta.id}-${idx}`}
+              className={`MisCartas-card ${
+                carta.tipo === 'oro'
+                  ? 'carta-oro'
+                  : carta.tipo === 'plata'
+                  ? 'carta-plata'
+                  : carta.tipo === 'bronce'
+                  ? 'carta-bronce'
+                  : ''
+              }`}
+            >
               <p>Nombre: {carta.nombre}</p>
               <p>Tipo: {carta.tipo}</p>
-              <p>Global: {carta.global}</p>
+              <p>Aura: {carta.global}</p>
             </div>
           ))}
         </div>

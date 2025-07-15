@@ -6,6 +6,15 @@ import { useNavigate } from 'react-router-dom';
 function Login() {
   const navigate = useNavigate();
 
+  const obtenerCartasAleatorias = (cantidad: number, max: number): number[] => {
+    const cartas = new Set<number>();
+    while (cartas.size < cantidad) {
+      const num = Math.floor(Math.random() * max) + 1;
+      cartas.add(num);
+    }
+    return Array.from(cartas);
+  };
+
   const handleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
@@ -16,11 +25,12 @@ function Login() {
       const userSnap = await getDoc(userRef);
 
       if (!userSnap.exists()) {
-        // Usuario nuevo: crear con cartas [1, 2, 3]
+        // Usuario nuevo: asignar 3 cartas aleatorias del 1 al 23
+        const cartasAleatorias = obtenerCartasAleatorias(3, 23);
         await setDoc(userRef, {
           nombre: user.displayName,
           mail: user.email,
-          tusCartas: [1, 2, 3],
+          tusCartas: cartasAleatorias,
         });
       }
 

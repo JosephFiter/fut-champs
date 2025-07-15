@@ -18,12 +18,24 @@
 }
 
 .MisCartas-card {
-  background-color: yellow;
-  color: black;
   padding: 20px;
   width: 150px;
   border-radius: 8px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   text-align: center;
   font-weight: bold;
+  color: black;
+}
+
+/* Estilos según tipo */
+.carta-oro {
+  background-color: gold;
+}
+
+.carta-plata {
+  background-color: silver;
+}
+
+.carta-bronce {
+  background-color: #cd7f32; /* color bronce clásico */
 }
