@@ -1,0 +1,29 @@
+.MisCartas-container {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.MisCartas-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.MisCartas-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.MisCartas-card {
+  background-color: yellow;
+  color: black;
+  padding: 20px;
+  width: 150px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  font-weight: bold;
+}
